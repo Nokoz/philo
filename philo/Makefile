@@ -6,6 +6,7 @@ SRC =	$(SRC_DIR)/threads_wrapper.c \
 		$(SRC_DIR)/main.c \
 		$(SRC_DIR)/utils.c \
 		$(SRC_DIR)/error.c \
+		$(SRC_DIR)/log.c \
 		$(SRC_DIR)/time.c
 
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))

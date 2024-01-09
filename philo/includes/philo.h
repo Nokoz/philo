@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/09 13:33:40 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:31:52 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,11 @@ int	ft_struct_error(void);
 /*   TIME   */
 int	ft_get_time(t_philo *philo);
 void	ft_printf_time(long long time);
+
+/*   LOG   */
+void	ft_p_fork(long long time, int philo);
+void	ft_p_eat(long long time, int philo);
+void	ft_p_sleep(long long time, int philo);
+void	ft_p_think(long long time, int philo);
+void	ft_p_dead(long long time, int philo);
 #endif
