@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:13:38 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/09 13:26:31 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:05:55 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	ft_time_error(void)
 	printf("Error retrieving time\n");
 	return (1);
 }
-int	ft_struct_error(void)
+int	ft_int_error(void)
 {
-	printf("Error in stuct\n");
-//free;
+	printf("Arguments can not be greater than");
+	printf(" %d or smaller than 0\n", INT_MAX);
 	return (1);
 }

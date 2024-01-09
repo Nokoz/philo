@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/09 16:31:52 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:02:49 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <pthread.h>
+#include <limits.h>
 
 typedef struct s_philo
 {
@@ -31,12 +32,13 @@ typedef struct s_philo
 
 /*   UTILS   */
 int	ft_init(int ac, char **av, t_philo *philo);
-int	ft_init_struct(char **av, t_philo *philo);
+int	ft_init_struct(int ac, char **av, t_philo *philo);
+int	ft_atoi(const char *str);
 
 /*   EROOR   */
 int	ft_ac_error(void);
 int	ft_time_error(void);
-int	ft_struct_error(void);
+int	ft_int_error(void);
 
 /*   TIME   */
 int	ft_get_time(t_philo *philo);
