@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 13:06:05 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:08:31 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,18 @@ typedef struct s_sim
 typedef struct s_philo
 {
 	int				id;
+	char			state;
+	long long		belly_full;
+	int				need_food;
+	pthread_t		th;
 	struct s_sim	*sim;
 }				t_philo;
 
 /*   INIT   */
-int			ft_init(int ac, char **av, t_sim*sim);
-int			ft_init_arg(int ac, char **av, t_sim*sim);
+int			ft_init(int ac, char **av, t_sim **sim, t_philo **philo);
+int			ft_init_arg(int ac, char **av, t_sim *sim);
 int			ft_init_forks(t_sim *sim);
+t_philo		*ft_init_philos(t_sim *sim);
 
 /*   UTILS   */
 void		ft_print_log(char state, t_philo *philo);
@@ -77,4 +82,6 @@ void	ft_mut_del(pthread_mutex_t *mutex);
 void	ft_mut_unlock(pthread_mutex_t *mutex);
 void	ft_mut_lock(pthread_mutex_t *mutex);
 void	ft_mut_init(pthread_mutex_t *mutex);
+
+/*   free   */
 #endif

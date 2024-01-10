@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 09:45:44 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 13:08:53 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/10 14:08:29 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,27 @@ int	ft_init_forks(t_sim *sim)
 	ft_mut_init(&(sim->print_mut));
 	sim->forks = forks;
 	return (1);
+}
+
+t_philo	*ft_init_philos(t_sim *sim)
+{
+	t_philo	*philo;
+	int		i;
+
+	philo = malloc(sizeof(t_philo) * (sim->count));
+	if (!philo)
+		return (NULL);
+	i = -1;
+	while (++i < sim->count)
+	{
+		philo[i].id = i + 1;
+		philo[i].state = THINK;
+		philo[i].belly_full = 0;
+		if (sim->must_eat)
+			philo[i].need_food = sim->must_eat;
+		else
+			philo[i].need_food = -1;
+		philo[i].sim = sim;
+	}
+	return (philo);
 }

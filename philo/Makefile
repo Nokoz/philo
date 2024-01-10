@@ -18,7 +18,7 @@ OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
 CC = clang
 HEAD = -I./includes
-CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=address
 LFLAGS = -pthread
 RM = /bin/rm -rf
 
