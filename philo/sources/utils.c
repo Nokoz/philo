@@ -5,58 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 16:48:47 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/09 17:02:37 by gvardaki         ###   ########.fr       */
+/*   Created: 2024/01/10 12:45:20 by gvardaki          #+#    #+#             */
+/*   Updated: 2024/01/10 12:49:33 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	ft_isdigit(int c)
+void	ft_print_log(char state, t_philo *philo)
 {
-	if (!c)
-		return (0);
-	if (c > 47 && c < 58)
-		return (1);
-	else
-		return (0);
-}
-
-static const char	*skip_zero(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] == '0')
-		i++;
-	return (str + i);
-}
-
-int	ft_atoi(const char *str)
-{
-	int	res;
-	int	sign;
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	res = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	ft_mut_lock(&(philo->sim->print_mut));
+	if (state == DEAD)
+		ft_p_dead(ft_get_time(), philo->id);
+	if (1) //check status
 	{
-		if (str[i] == '-')
-			sign *= (-1);
-		i++;
+		if (state == FORK)
+			ft_p_fork(ft_get_time(), philo->id);
+		else if (state == EAT)
+			ft_p_eat(ft_get_time(), philo->id);
+		else if (state == SLEEP)
+			ft_p_sleep(ft_get_time(), philo->id);
+		else if (state == THINK)
+			ft_p_think(ft_get_time(), philo->id);
 	}
-	str = skip_zero(str + i);
-	i = 0;
-	while (ft_isdigit(str[i]))
-		res = res * 10 + str[i++] - 48;
-	if (i <= 19)
-		return (res * sign);
-	else
-		return (-1);
+	ft_mut_unlock(&(philo->sim->print_mut));
 }

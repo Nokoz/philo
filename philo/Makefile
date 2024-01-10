@@ -1,12 +1,17 @@
 NAME = philo
+
 SRC_DIR = sources
+
 OBJ_DIR = .objs
 
 SRC =	$(SRC_DIR)/threads_wrapper.c \
+		$(SRC_DIR)/mutex_wrapper.c \
 		$(SRC_DIR)/main.c \
 		$(SRC_DIR)/utils.c \
 		$(SRC_DIR)/error.c \
 		$(SRC_DIR)/log.c \
+		$(SRC_DIR)/atoi.c \
+		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/time.c
 
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))

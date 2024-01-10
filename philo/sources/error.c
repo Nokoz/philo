@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:13:38 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/09 17:05:55 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:46:08 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int	ft_ac_error(void)
 {
 	printf("Arguments can only be 4 or 5 numeric values\n");
-	return (1);
+	return (0);
 }
 int	ft_time_error(void)
 {
 	printf("Error retrieving time\n");
-	return (1);
+	return (-1);
 }
 int	ft_int_error(void)
 {
