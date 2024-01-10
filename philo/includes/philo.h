@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 14:08:31 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:33:17 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_philo		*ft_init_philos(t_sim *sim);
 
 /*   UTILS   */
 void		ft_print_log(char state, t_philo *philo);
+void		ft_create_threads(t_sim *sim, t_philo *philo);
+void		*ft_run_sim(void *arg);
 
 /*   ATOI   */
 int			ft_atoi(const char *str);
@@ -82,6 +84,11 @@ void	ft_mut_del(pthread_mutex_t *mutex);
 void	ft_mut_unlock(pthread_mutex_t *mutex);
 void	ft_mut_lock(pthread_mutex_t *mutex);
 void	ft_mut_init(pthread_mutex_t *mutex);
+
+/*   THREAD WRAP   */
+int	ft_th_create(pthread_t *th, void *(*function)(void *), void *arg);
+int	ft_th_join(pthread_t th);
+int	ft_th_detach(pthread_t th);
 
 /*   free   */
 #endif

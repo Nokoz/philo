@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:06:27 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 14:08:55 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:43:38 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,28 @@ int	main(int ac, char **av)
 	if (!ft_init(ac, av, &sim, &philo))
 		return (1);
 
-	ft_print_log(THINK, philo);
+	ft_create_threads(sim, philo);
+//	ft_print_log(THINK, philo);
 	free(philo);
 	free(sim->forks);
 	free(sim);
 	return (0);
+}
+
+void	ft_create_threads(t_sim *sim, t_philo *philo)
+{
+	int	i;
+
+	i = -1;
+	while (++i < sim->count)
+		ft_th_create(&philo[i].th, ft_run_sim, &philo[i]);
+	i = -1;
+	while (++i < sim->count)
+		ft_th_join(philo[i].th);
+	i = -1;
+	while (++i < sim->count)
+		ft_th_detach(philo[i].th);
+
 }
 
 int	ft_init(int ac, char **av, t_sim **sim, t_philo **philo)
@@ -42,4 +59,14 @@ int	ft_init(int ac, char **av, t_sim **sim, t_philo **philo)
 	if (!philo)
 		return (0 * printf("Malloc error\n"));
 	return (1);
+}
+
+void	*ft_run_sim(void *arg)
+{
+	t_philo *philo;
+
+	philo = (t_philo *)arg;
+//	printf("Hello from thread %d\n", philo->id);
+	ft_print_log(THINK, philo);
+	return (NULL);
 }
