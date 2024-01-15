@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 16:33:17 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:30:49 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include <pthread.h>
 # include <limits.h>
 
-# define FORK 'f'
-# define EAT 'e'
-# define SLEEP 's'
-# define THINK 't'
-# define DEAD 'd'
+# define FORK 1
+# define EAT 2
+# define SLEEP 3
+# define THINK 4
+# define DEAD 5
 
 typedef struct s_sim
 {
@@ -36,12 +36,12 @@ typedef struct s_sim
 	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mut;
-} 				t_sim;
+}				t_sim;
 
 typedef struct s_philo
 {
 	int				id;
-	char			state;
+	int				state;
 	long long		belly_full;
 	int				need_food;
 	pthread_t		th;
@@ -55,9 +55,12 @@ int			ft_init_forks(t_sim *sim);
 t_philo		*ft_init_philos(t_sim *sim);
 
 /*   UTILS   */
-void		ft_print_log(char state, t_philo *philo);
+void		ft_print_log(int state, t_philo *philo);
 void		ft_create_threads(t_sim *sim, t_philo *philo);
 void		*ft_run_sim(void *arg);
+void		ft_die(t_philo *philo);
+int			ft_die_check(t_philo *philo);
+void		ft_action_time(t_philo *philo, int time);
 
 /*   ATOI   */
 int			ft_atoi(const char *str);
@@ -80,15 +83,15 @@ void		ft_p_think(long long time, int philo);
 void		ft_p_dead(long long time, int philo);
 
 /*   MUTEX WRAP   */
-void	ft_mut_del(pthread_mutex_t *mutex);
-void	ft_mut_unlock(pthread_mutex_t *mutex);
-void	ft_mut_lock(pthread_mutex_t *mutex);
-void	ft_mut_init(pthread_mutex_t *mutex);
+void		ft_mut_del(pthread_mutex_t *mutex);
+void		ft_mut_unlock(pthread_mutex_t *mutex);
+void		ft_mut_lock(pthread_mutex_t *mutex);
+void		ft_mut_init(pthread_mutex_t *mutex);
 
 /*   THREAD WRAP   */
-int	ft_th_create(pthread_t *th, void *(*function)(void *), void *arg);
-int	ft_th_join(pthread_t th);
-int	ft_th_detach(pthread_t th);
+int			ft_th_create(pthread_t *th, void *(*function)(void *), void *arg);
+int			ft_th_join(pthread_t th);
+int			ft_th_detach(pthread_t th);
 
 /*   free   */
 #endif

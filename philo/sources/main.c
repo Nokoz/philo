@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:06:27 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 16:43:38 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 09:39:51 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int ac, char **av)
 		return (1);
 
 	ft_create_threads(sim, philo);
-//	ft_print_log(THINK, philo);
 	free(philo);
 	free(sim->forks);
 	free(sim);
@@ -66,7 +65,15 @@ void	*ft_run_sim(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-//	printf("Hello from thread %d\n", philo->id);
+	if (philo->sim->count == 1)
+	{
+		ft_mut_lock(&philo->sim->forks[0]);
+		ft_print_log(FORK, philo);
+		usleep(philo->sim->to_die * 1000);
+		ft_die(philo);
+		return (NULL);
+	}
 	ft_print_log(THINK, philo);
+	ft_start_diner
 	return (NULL);
 }

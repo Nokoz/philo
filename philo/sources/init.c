@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 09:45:44 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 14:08:29 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 08:59:23 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_init_arg(int ac, char **av, t_sim *sim)
 
 int	ft_init_forks(t_sim *sim)
 {
-	int					i;
+	int				i;
 	pthread_mutex_t	*forks;
 
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:35 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/10 10:30:40 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 08:48:32 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ void	ft_printf_time(long long time)
 	time %= 60000;
 	s = time / 1000;
 	ms = time % 1000;
-
 	printf("[%dH %dM %dS %dmS]", h, m, s, ms);
 }
