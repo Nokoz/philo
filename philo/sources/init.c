@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 09:45:44 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 08:59:23 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:16:11 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	ft_init_arg(int ac, char **av, t_sim *sim)
 	sim->to_die = ft_atoi(av[2]);
 	sim->to_eat = ft_atoi(av[3]);
 	sim->to_sleep = ft_atoi(av[4]);
+	ft_mut_init(&sim->waiter);
 	if (ac == 6)
 		sim->must_eat = ft_atoi(av[5]);
 	else
@@ -111,7 +112,7 @@ t_philo	*ft_init_philos(t_sim *sim)
 	{
 		philo[i].id = i + 1;
 		philo[i].state = THINK;
-		philo[i].belly_full = 0;
+		philo[i].belly_full = ft_get_time();
 		if (sim->must_eat)
 			philo[i].need_food = sim->must_eat;
 		else

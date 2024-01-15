@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 09:59:52 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 13:43:27 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:44:09 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_eat(t_philo *philo)
 {
-	//check status
+//	if (!(ft_check_end(philo, philo->id, 0)))
+//		return ;
 	if (ft_die_check(philo))
 		return (ft_die(philo));
 	philo->sim->must_eat--;
@@ -28,7 +29,8 @@ void	ft_eat(t_philo *philo)
 
 void	ft_sleep(t_philo *philo)
 {
-	//check status
+//	if (!(ft_check_end(philo, philo->id, 0)))
+//		return ;
 	if (ft_die_check(philo))
 		return (ft_die(philo));
 	ft_print_log(SLEEP, philo);
@@ -38,7 +40,8 @@ void	ft_sleep(t_philo *philo)
 
 void	ft_think(t_philo *philo)
 {
-	//check status
+//	if (!(ft_check_end(philo, philo->id, 0)))
+//		return ;
 	if (ft_die_check(philo))
 		return (ft_die(philo));
 	ft_print_log(THINK, philo);
@@ -61,7 +64,7 @@ void	ft_take_forks(t_philo *philo)
 int	ft_left_fork(t_philo *philo)
 {
 	if (philo->id > 1)
-		return (philo->id - 1);
+		return (philo->id - 2);
 	else
 		return (philo->sim->count - 1);
 }

@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:45:20 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 12:30:59 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:08:40 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_log(int state, t_philo *philo)
 	ft_mut_lock(&(philo->sim->print_mut));
 	if (state == DEAD)
 		ft_p_dead(ft_get_time(), philo->id);
-	if (1) //check status
+	if(ft_check_end(philo->sim->philos, philo->id))
 	{
 		if (state == FORK)
 			ft_p_fork(ft_get_time(), philo->id);
@@ -64,4 +64,33 @@ void	ft_action_time(t_philo *philo, int time)
 		if (ft_die_check(philo))
 			return (ft_die(philo));
 	}
+}
+
+int	ft_check_end(t_philo *philo, int id)
+{
+	int i;
+
+	ft_mut_lock(&philo->sim->waiter);
+	i = 0;
+	while (i < philo->sim->count)
+	{
+		if (philo[i++].state == DEAD)
+			return (0);
+	}
+	if (philo->sim->must_eat > 0)
+	{
+		i = 0;
+		while (i < philo->sim->count)
+		{
+			if (!(philo[i].need_food >= 0) && i == id)
+				return (0);
+			if (philo[i].need_food >= 0)
+				return(1);
+			i++;
+		}
+		if (i == philo->sim->count)
+			return (0);
+	}
+	ft_mut_unlock(&philo->sim->waiter);
+	return (i);
 }

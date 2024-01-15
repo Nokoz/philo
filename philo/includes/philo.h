@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 13:42:20 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:07:55 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_sim
 	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mut;
+	pthread_mutex_t	waiter;
+	struct s_philo	*philos;
 }				t_sim;
 
 typedef struct s_philo
@@ -68,6 +70,8 @@ void		*ft_run_sim(void *arg);
 void		ft_die(t_philo *philo);
 int			ft_die_check(t_philo *philo);
 void		ft_action_time(t_philo *philo, int time);
+void		ft_start_dinner(t_philo *philo);
+int			ft_check_end(t_philo *philo, int id);
 
 /*   ATOI   */
 int			ft_atoi(const char *str);
