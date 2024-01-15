@@ -12,6 +12,7 @@ SRC =	$(SRC_DIR)/threads_wrapper.c \
 		$(SRC_DIR)/log.c \
 		$(SRC_DIR)/atoi.c \
 		$(SRC_DIR)/init.c \
+		$(SRC_DIR)/dinning.c \
 		$(SRC_DIR)/time.c
 
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))

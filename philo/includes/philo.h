@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 12:30:49 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:42:20 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ int			ft_init(int ac, char **av, t_sim **sim, t_philo **philo);
 int			ft_init_arg(int ac, char **av, t_sim *sim);
 int			ft_init_forks(t_sim *sim);
 t_philo		*ft_init_philos(t_sim *sim);
+
+/*   DINNING   */
+void		ft_eat(t_philo *philo);
+void		ft_sleep(t_philo *philo);
+void		ft_think(t_philo *philo);
+void		ft_take_forks(t_philo *philo);
+int			ft_left_fork(t_philo *philo);
 
 /*   UTILS   */
 void		ft_print_log(int state, t_philo *philo);

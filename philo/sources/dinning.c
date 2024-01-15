@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 09:59:52 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 12:31:26 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:43:27 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_eat(t_philo *philo)
 	//check status
 	if (ft_die_check(philo))
 		return (ft_die(philo));
-	philo->must_eat--;
+	philo->sim->must_eat--;
 	ft_print_log(EAT, philo);
 	philo->belly_full = ft_get_time();
 	ft_action_time(philo, philo->sim->to_eat);
@@ -27,8 +27,24 @@ void	ft_eat(t_philo *philo)
 }
 
 void	ft_sleep(t_philo *philo)
+{
+	//check status
+	if (ft_die_check(philo))
+		return (ft_die(philo));
+	ft_print_log(SLEEP, philo);
+	ft_action_time(philo, philo->sim->to_sleep);
+	ft_think(philo);
+}
 
 void	ft_think(t_philo *philo)
+{
+	//check status
+	if (ft_die_check(philo))
+		return (ft_die(philo));
+	ft_print_log(THINK, philo);
+	ft_take_forks(philo);
+	ft_eat(philo);
+}
 
 void	ft_take_forks(t_philo *philo)
 {
