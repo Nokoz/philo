@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:31:03 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 17:07:55 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/16 08:19:05 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void		ft_p_dead(long long time, int philo);
 
 /*   MUTEX WRAP   */
 void		ft_mut_del(pthread_mutex_t *mutex);
-void		ft_mut_unlock(pthread_mutex_t *mutex);
+int			ft_mut_unlock(pthread_mutex_t *mutex);
 void		ft_mut_lock(pthread_mutex_t *mutex);
 void		ft_mut_init(pthread_mutex_t *mutex);
 

@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 09:45:44 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 17:16:11 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/16 08:55:00 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ t_philo	*ft_init_philos(t_sim *sim)
 	t_philo	*philo;
 	int		i;
 
-	philo = malloc(sizeof(t_philo) * (sim->count));
+	philo = malloc(sizeof(t_philo) * (sim->count + 1));
 	if (!philo)
 		return (NULL);
-	i = -1;
-	while (++i < sim->count)
+	i = 0;
+	while (i < sim->count)
 	{
 		philo[i].id = i + 1;
 		philo[i].state = THINK;
@@ -118,6 +118,10 @@ t_philo	*ft_init_philos(t_sim *sim)
 		else
 			philo[i].need_food = -1;
 		philo[i].sim = sim;
+		i++;
 	}
+	philo[i].id = 0;
+	philo[i].state = 0;
+	philo[i].need_food = -1;
 	return (philo);
 }

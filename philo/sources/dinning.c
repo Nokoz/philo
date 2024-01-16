@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 09:59:52 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 16:44:09 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:16:50 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_eat(t_philo *philo)
 {
-//	if (!(ft_check_end(philo, philo->id, 0)))
-//		return ;
+	if (!(ft_check_end(philo->sim->philos, philo->id)))
+		return ;
 	if (ft_die_check(philo))
 		return (ft_die(philo));
-	philo->sim->must_eat--;
+	philo->need_food--;
 	ft_print_log(EAT, philo);
 	philo->belly_full = ft_get_time();
 	ft_action_time(philo, philo->sim->to_eat);
@@ -29,8 +29,8 @@ void	ft_eat(t_philo *philo)
 
 void	ft_sleep(t_philo *philo)
 {
-//	if (!(ft_check_end(philo, philo->id, 0)))
-//		return ;
+	if (!(ft_check_end(philo->sim->philos, philo->id)))
+		return ;
 	if (ft_die_check(philo))
 		return (ft_die(philo));
 	ft_print_log(SLEEP, philo);
@@ -40,8 +40,8 @@ void	ft_sleep(t_philo *philo)
 
 void	ft_think(t_philo *philo)
 {
-//	if (!(ft_check_end(philo, philo->id, 0)))
-//		return ;
+	if (!(ft_check_end(philo->sim->philos, philo->id)))
+		return ;
 	if (ft_die_check(philo))
 		return (ft_die(philo));
 	ft_print_log(THINK, philo);
