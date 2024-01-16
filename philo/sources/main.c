@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:06:27 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/15 17:12:54 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:21:52 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int	main(int ac, char **av)
 
 	if (!ft_init(ac, av, &sim, &philo))
 		return (1);
-
 	ft_create_threads(sim, philo);
 	free(philo);
-	//destroy mutexeS
+	ft_destroy_mutexes(sim);
 	free(sim->forks);
 	free(sim);
 	return (0);
@@ -41,7 +40,6 @@ void	ft_create_threads(t_sim *sim, t_philo *philo)
 	i = -1;
 	while (++i < sim->count)
 		ft_th_detach(philo[i].th);
-
 }
 
 int	ft_init(int ac, char **av, t_sim **sim, t_philo **philo)
@@ -71,7 +69,7 @@ int	ft_init(int ac, char **av, t_sim **sim, t_philo **philo)
 
 void	*ft_run_sim(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	if (philo->sim->count == 1)
@@ -88,11 +86,26 @@ void	*ft_run_sim(void *arg)
 
 void	ft_start_dinner(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
+	if (philo->sim->count % 2 == 0)
 	{
-		ft_take_forks(philo);
-		ft_eat(philo);
+		if ((philo->id - 1) % 2 == 0)
+			ft_sleep(philo);
+		else if ((philo->id - 1) % 2 == 1)
+		{
+			ft_take_forks(philo);
+			ft_eat(philo);
+		}
 	}
 	else
-		ft_sleep(philo);
+	{
+		if ((philo->id -1) % 3 == 0)
+			ft_sleep(philo);
+		else if ((philo->id - 1) % 3 == 1)
+		{
+			ft_take_forks(philo);
+			ft_eat(philo);
+		}
+		else
+			ft_think(philo);
+	}
 }

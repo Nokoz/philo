@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 09:59:52 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/16 13:16:50 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:51:15 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_eat(t_philo *philo)
 	if (ft_die_check(philo))
 		return (ft_die(philo));
 	philo->need_food--;
-	ft_print_log(EAT, philo);
 	philo->belly_full = ft_get_time();
+	ft_print_log(EAT, philo);
 	ft_action_time(philo, philo->sim->to_eat);
 	ft_mut_unlock(&philo->sim->forks[philo->id - 1]);
 	ft_mut_unlock(&philo->sim->forks[ft_left_fork(philo)]);
@@ -46,6 +46,8 @@ void	ft_think(t_philo *philo)
 		return (ft_die(philo));
 	ft_print_log(THINK, philo);
 	ft_take_forks(philo);
+	if (!(ft_check_end(philo->sim->philos, philo->id)))
+		return ;
 	ft_eat(philo);
 }
 

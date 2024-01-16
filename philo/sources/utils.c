@@ -6,7 +6,7 @@
 /*   By: gvardaki <gvardaki@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 12:45:20 by gvardaki          #+#    #+#             */
-/*   Updated: 2024/01/16 13:17:51 by gvardaki         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:17:32 by gvardaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_log(int state, t_philo *philo)
 	ft_mut_lock(&(philo->sim->print_mut));
 	if (state == DEAD)
 		ft_p_dead(ft_get_time(), philo->id);
-	if(ft_check_end(philo->sim->philos, philo->id))
+	if (ft_check_end(philo->sim->philos, philo->id))
 	{
 		if (state == FORK)
 			ft_p_fork(ft_get_time(), philo->id);
@@ -35,9 +35,9 @@ void	ft_die(t_philo *philo)
 {
 	int	i;
 
+	ft_print_log(DEAD, philo);
 	i = 0;
 	philo->state = DEAD;
-	ft_print_log(DEAD, philo);
 	while (i < philo->sim->count)
 	{
 		ft_mut_unlock(&philo->sim->forks[i]);
@@ -69,11 +69,11 @@ void	ft_action_time(t_philo *philo, int time)
 
 int	ft_check_end(t_philo *philo, int id)
 {
-	int i;
+	int	i;
 
 	ft_mut_lock(&philo->sim->waiter);
 	i = 0;
-	while  (philo[i].id)//(i < philo->sim->count)
+	while (i < philo->sim->count)
 	{
 		if (philo[i++].state == DEAD)
 			return (0 * ft_mut_unlock(&philo->sim->waiter));
@@ -81,7 +81,7 @@ int	ft_check_end(t_philo *philo, int id)
 	if (philo->sim->must_eat > 0)
 	{
 		i = 0;
-		while (philo[i].id)//(i < philo->sim->count)
+		while (i < philo->sim->count)
 		{
 			if (philo[i].need_food <= 0 && (i == id))
 				return (0 * ft_mut_unlock(&philo->sim->waiter));
